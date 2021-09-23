@@ -26,7 +26,8 @@ function resetYear() {
     }, 86400000);
 }
 
-function birthdayCounter(intervalId) {
+// 남은 날짜 게산
+function birthdayCounter() {
     const currentDate = new Date();
     const time = birthday - currentDate;
 
@@ -48,12 +49,14 @@ function birthdayCounter(intervalId) {
     }
 }
 
+// 5초마다 배경 이미지 변경
 function changeImg() {
     let imageIdx = Math.floor(Math.random() * 10);
     document.body.style.backgroundImage= `url("./image/background${imageIdx}.jpg")`;
     setTimeout(changeImg, 5000);
 }
 
+// 이미지 변경시, Flicker 방지를 위한 preload
 let images = [];
 function preload() {
     for(let i = 0; i < preload.arguments.length; i++) {
@@ -74,6 +77,7 @@ preload(
     "./image/background8.jpg",
     "./image/background9.jpg"
 )
+
 // 1초마다 countdown 함수 실행
 setInterval(birthdayCounter, 1000);
 changeImg();
