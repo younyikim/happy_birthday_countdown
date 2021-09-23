@@ -34,7 +34,7 @@ function birthdayCounter() {
     if (time <= 0) {
         nextYear.style.fontSize = "2.2rem";
         nextYear.style.color = "white";
-        nextYear.innerHTML = `${yourName}이의 ${thisYear - 1998 + 1}번째 생일을 축하해.늘 언니의 행복을 바라는 연이가.`;
+        nextYear.innerHTML = `${yourName}이의 ${thisYear - 1998 + 1}번째 생일을 축하해. 오늘 하루 종일 행복하고, 재밌게 놀자! 무덤까지 함께하는거야 키키 사랑해!!! 연이가`;
         resetYear();
     } else {
         const day = Math.floor(time / 1000 / 60 / 60 / 24);
