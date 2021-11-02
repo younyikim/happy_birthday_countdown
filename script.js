@@ -11,7 +11,7 @@ let currentYear = new Date().getFullYear();
 /* 이름 | 태어난 해 |생일 | 메세지 입력 */
 let yourName = "김크크"; // 이름 입력
 let yourBirthYear = 1999; // 태어난 해
-let yourBirthday = "January 1"; // 생일 입력
+let yourBirthday = "November 2"; // 생일 입력
 
 /* 생일 축하 메세지 입력은 기본출력 뒤에 붙는 메세지
     기본 출력 : yourName의 00번째 생일을 축하해!!
@@ -23,12 +23,17 @@ let customMsg = "";
 
 let birthday = new Date(`${yourBirthday} ${currentYear} 00:00:00`);
 let copyBD = birthday;
-
-title.innerHTML = `${yourName}의 생일까지`;
-
 // 내년 날짜 표시
 const nextYear = document.getElementById("nextYear");
 const thisYear = birthday.getFullYear();
+
+/* 기본 메세지 */
+let primaryMsg = `${yourName}의 ${
+    thisYear - yourBirthYear + 1
+} 번째 생일을 축하해!`;
+
+title.innerHTML = `${yourName}의 생일까지`;
+
 nextYear.innerHTML = currentYear;
 
 // 생일이 지나면, 내년 생일로 카운트 다운을 초기화한다.
@@ -41,9 +46,7 @@ function resetSetting(currentDate) {
 
         nextYear.style.fontSize = "2.2rem";
         nextYear.style.color = "white";
-        nextYear.innerHTML = `${yourName}의 ${
-            thisYear - yourBirthYear + 1
-        } 번째 생일을 축하해! ${customMsg}`;
+        nextYear.innerHTML = primaryMsg + customMsg;
         setTimeout(() => resetMsg(), 86400000); // 하루가 지나면 메세지를 지우고, currentYear + 1년을 보여줌
     }
     // 오늘 생일이 아닌 경우
