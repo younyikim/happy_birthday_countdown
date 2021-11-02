@@ -7,10 +7,10 @@ const bg = document.querySelector(".bg");
 
 let currentYear = new Date().getFullYear();
 
-/* 이름 | 생일 | 메세지 입력 */
-let yourName = "민영언니"; // 이름 입력
-let yourBirthYear = 1998; // 태어난 해
-let yourBirthday = "September 2"; // 생일 입력
+/* 이름 | 태어난 해 |생일 | 메세지 입력 */
+let yourName = "김크크"; // 이름 입력
+let yourBirthYear = 1999; // 태어난 해
+let yourBirthday = "January 1"; // 생일 입력
 
 /* 생일 축하 메세지 입력은 기본출력 뒤에 붙는 메세지
     기본 출력 : yourName의 00번째 생일을 축하해!!
@@ -45,14 +45,13 @@ function resetYear(currentDate) {
     }
     // 오늘 생일이 아닌 경우
     else {
-        console.log("today is not your birthday");
+        console.log("Today is not your birthday");
         resetMsg();
     }
 }
 
 // 생일이 지나면, currentYear + 1년으로 메세지를 변경
 function resetMsg() {
-    console.log("reset Message");
     nextYear.innerHTML = currentYear + 1;
     nextYear.style.fontSize = "200px";
     nextYear.style.color = "rgba(255, 255, 255, 0.315)";
@@ -81,7 +80,7 @@ function birthdayCounter() {
 // 5초마다 배경 이미지 변경
 function changeImg() {
     let imageIdx = Math.floor(Math.random() * 10);
-    document.body.style.backgroundImage = `url("./image/background${imageIdx}.jpg")`;
+    document.body.style.backgroundImage = `url("./image/background${imageIdx}.jpeg")`;
     setTimeout(changeImg, 5000);
 }
 
@@ -95,16 +94,16 @@ function preload() {
 }
 
 preload(
-    "./image/background0.jpg",
-    "./image/background1.jpg",
-    "./image/background2.jpg",
-    "./image/background3.jpg",
-    "./image/background4.jpg",
-    "./image/background5.jpg",
-    "./image/background6.jpg",
-    "./image/background7.jpg",
-    "./image/background8.jpg",
-    "./image/background9.jpg"
+    "./image/background0.jpeg",
+    "./image/background1.jpeg",
+    "./image/background2.jpeg",
+    "./image/background3.jpeg",
+    "./image/background4.jpeg",
+    "./image/background5.jpeg",
+    "./image/background6.jpeg",
+    "./image/background7.jpeg",
+    "./image/background8.jpeg",
+    "./image/background9.jpeg"
 );
 
 // 1초마다 countdown 함수 실행
