@@ -6,9 +6,21 @@ const title = document.getElementById("title");
 const bg = document.querySelector(".bg");
 
 let currentYear = new Date().getFullYear();
-let yourName = "민영언니";
-let yourBirthday = "September 24";
+
+/* 이름 | 생일 | 메세지 입력 */
+let yourName = "민영언니"; // 이름 입력
+let yourBirthYear = 1998; // 태어난 해
+let yourBirthday = "September 2"; // 생일 입력
+
+/* 생일 축하 메세지 입력은 기본출력 뒤에 붙는 메세지
+    기본 출력 : yourName의 00번째 생일을 축하해!!
+    
+    - 메세지 내 이모티콘 사용 가능(Mac 기준)
+*/
+let customMsg = "";
+
 let birthday = new Date(`${yourBirthday} ${currentYear} 00:00:00`);
+let copyBD = birthday;
 title.innerHTML = `${yourName}의 생일까지`;
 
 // 내년 날짜 표시
@@ -17,13 +29,30 @@ const thisYear = birthday.getFullYear();
 nextYear.innerHTML = currentYear;
 
 // 생일이 지나면, 내년 생일로 카운트 다운을 초기화한다.
-function resetYear() {
+function resetYear(currentDate) {
     birthday = new Date(`${yourBirthday} ${currentYear + 1} 00:00:00`);
-    setTimeout(() => resetMsg(), 86400000); // 하루가 지나면 메세지를 지우고, currentYear + 1년을 보여줌
+
+    // 오늘이 생일이면, 1일 지난 후 resetMsg
+    if (copyBD.toDateString() === currentDate.toDateString()) {
+        console.log("Happy Birthday!!!!!");
+
+        nextYear.style.fontSize = "2.2rem";
+        nextYear.style.color = "white";
+        nextYear.innerHTML = `${yourName}의 ${
+            thisYear - yourBirthYear + 1
+        } 번째 생일을 축하해! ${customMsg}`;
+        setTimeout(() => resetMsg(), 86400000); // 하루가 지나면 메세지를 지우고, currentYear + 1년을 보여줌
+    }
+    // 오늘 생일이 아닌 경우
+    else {
+        console.log("today is not your birthday");
+        resetMsg();
+    }
 }
 
 // 생일이 지나면, currentYear + 1년으로 메세지를 변경
 function resetMsg() {
+    console.log("reset Message");
     nextYear.innerHTML = currentYear + 1;
     nextYear.style.fontSize = "200px";
     nextYear.style.color = "rgba(255, 255, 255, 0.315)";
@@ -35,12 +64,7 @@ function birthdayCounter() {
     const time = birthday - currentDate;
 
     if (time <= 0) {
-        nextYear.style.fontSize = "2.2rem";
-        nextYear.style.color = "white";
-        nextYear.innerHTML = `${yourName}이의 ${
-            thisYear - 1998 + 1
-        }번째 생일을 축하해. 오늘 하루 종일 행복하고, 재밌게 놀자! 무덤까지 함께하는거야 키키 사랑해!!! 연이가`;
-        resetYear();
+        resetYear(currentDate);
     } else {
         const day = Math.floor(time / 1000 / 60 / 60 / 24);
         const hour = Math.floor(time / 1000 / 60 / 60) % 24;
