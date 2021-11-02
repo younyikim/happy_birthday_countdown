@@ -7,6 +7,7 @@ const bg = document.querySelector(".bg");
 
 let currentYear = new Date().getFullYear();
 
+/* -------- 정보 입력 -------------- */
 /* 이름 | 태어난 해 |생일 | 메세지 입력 */
 let yourName = "김크크"; // 이름 입력
 let yourBirthYear = 1999; // 태어난 해
@@ -18,9 +19,11 @@ let yourBirthday = "January 1"; // 생일 입력
     - 메세지 내 이모티콘 사용 가능(Mac 기준)
 */
 let customMsg = "";
+/* ------------------------------- */
 
 let birthday = new Date(`${yourBirthday} ${currentYear} 00:00:00`);
 let copyBD = birthday;
+
 title.innerHTML = `${yourName}의 생일까지`;
 
 // 내년 날짜 표시
@@ -29,7 +32,7 @@ const thisYear = birthday.getFullYear();
 nextYear.innerHTML = currentYear;
 
 // 생일이 지나면, 내년 생일로 카운트 다운을 초기화한다.
-function resetYear(currentDate) {
+function resetSetting(currentDate) {
     birthday = new Date(`${yourBirthday} ${currentYear + 1} 00:00:00`);
 
     // 오늘이 생일이면, 1일 지난 후 resetMsg
@@ -63,7 +66,7 @@ function birthdayCounter() {
     const time = birthday - currentDate;
 
     if (time <= 0) {
-        resetYear(currentDate);
+        resetSetting(currentDate);
     } else {
         const day = Math.floor(time / 1000 / 60 / 60 / 24);
         const hour = Math.floor(time / 1000 / 60 / 60) % 24;
